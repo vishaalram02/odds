@@ -1,0 +1,733 @@
+{
+  "243a2713dd209ea6d5ce9cfb952ba305": {
+    "time": 1738627800,
+    "home_team": "Detroit Pistons",
+    "away_team": "Atlanta Hawks",
+    "odds": {
+      "fanduel": [
+        {
+          "last_update": 1738604459,
+          "players": {
+            "Trae Young": 550,
+            "Cade Cunningham": 550,
+            "Jalen Duren": 650,
+            "Onyeka Okongwu": 750,
+            "Tobias Harris": 750,
+            "Ausar Thompson": 850,
+            "De'Andre Hunter": 900,
+            "Tim Hardaway Jr": 950,
+            "Zaccharie Risacher": 1000,
+            "Dyson Daniels": 1000
+          }
+        }
+      ],
+      "draftkings": [
+        {
+          "last_update": 1738604468,
+          "players": {
+            "Tim Hardaway Jr": 800,
+            "Tobias Harris": 800,
+            "Trae Young": 550,
+            "Zaccharie Risacher": 750,
+            "Cade Cunningham": 500,
+            "Jalen Duren": 750,
+            "Ausar Thompson": 1000,
+            "Onyeka Okongwu": 600,
+            "Dominick Barlow": 1000,
+            "Dyson Daniels": 900
+          }
+        }
+      ],
+      "betmgm": [
+        {
+          "last_update": 1738604442,
+          "players": {
+            "Cade Cunningham": 475,
+            "Jalen Duren": 600,
+            "Trae Young": 600,
+            "Onyeka Okongwu": 625,
+            "Tobias Harris": 700,
+            "Ausar Thompson": 775,
+            "Zaccharie Risacher": 850,
+            "Dyson Daniels": 875,
+            "Tim Hardaway Jr": 1000
+          }
+        }
+      ],
+      "bovada": [
+        {
+          "last_update": 1738604466,
+          "players": {
+            "Trae Young": 500,
+            "Cade Cunningham": 600,
+            "Jalen Duren": 650,
+            "Tobias Harris": 750,
+            "Onyeka Okongwu": 800,
+            "Ausar Thompson": 850,
+            "Tim Hardaway Jr": 900,
+            "De'Andre Hunter": 950,
+            "Zaccharie Risacher": 950,
+            "Dyson Daniels": 1100
+          }
+        }
+      ]
+    }
+  },
+  "4a1ab01ed1f80004b15f13491437d04e": {
+    "time": 1738627800,
+    "home_team": "Charlotte Hornets",
+    "away_team": "Washington Wizards",
+    "odds": {
+      "draftkings": [
+        {
+          "last_update": 1738604436,
+          "players": {
+            "Bilal Coulibaly": 950,
+            "Josh Green": 1100,
+            "Kyshawn George": 1300,
+            "Jonas Valanciunas": 650,
+            "Jordan Poole": 550,
+            "Kyle Kuzma": 600,
+            "Vasilije Micic": 1000,
+            "Mark Williams": 400,
+            "Nick Smith Jr": 750,
+            "Miles Bridges": 550
+          }
+        }
+      ],
+      "fanduel": [
+        {
+          "last_update": 1738604440,
+          "players": {
+            "Miles Bridges": 490,
+            "Mark Williams": 500,
+            "Kyle Kuzma": 600,
+            "Jordan Poole": 700,
+            "Jonas Valanciunas": 750,
+            "Josh Green": 750,
+            "Nick Smith Jr": 800,
+            "Vasilije Micic": 1000,
+            "Bilal Coulibaly": 1500,
+            "Kyshawn George": 1700
+          }
+        }
+      ],
+      "betmgm": [
+        {
+          "last_update": 1738604481,
+          "players": {
+            "Miles Bridges": 450,
+            "Mark Williams": 450,
+            "Kyle Kuzma": 675,
+            "Jonas Valanciunas": 675,
+            "Jordan Poole": 675,
+            "Nick Smith Jr": 750,
+            "Vasilije Micic": 850,
+            "Bilal Coulibaly": 1000,
+            "Josh Green": 1100,
+            "Kyshawn George": 1250
+          }
+        }
+      ],
+      "bovada": [
+        {
+          "last_update": 1738604424,
+          "players": {
+            "Miles Bridges": 475,
+            "Mark Williams": 500,
+            "Kyle Kuzma": 600,
+            "Jordan Poole": 750,
+            "Nick Smith Jr": 700,
+            "Jonas Valanciunas": 800,
+            "Josh Green": 1000,
+            "Vasilije Micic": 1000,
+            "Bilal Coulibaly": 1400,
+            "Kyshawn George": 1700
+          }
+        }
+      ]
+    }
+  },
+  "40d562250a4eece875d31cfd852a3867": {
+    "time": 1738629600,
+    "home_team": "New York Knicks",
+    "away_team": "Houston Rockets",
+    "odds": {
+      "fanduel": [
+        {
+          "last_update": 1738604448,
+          "players": {
+            "Jalen Brunson": 440,
+            "Alperen Sengun": 550,
+            "Jalen Green": 650,
+            "Karl-Anthony Towns": 650,
+            "Amen Thompson": 700,
+            "Mikal Bridges": 950,
+            "Dillon Brooks": 1000,
+            "Precious Achiuwa": 1100,
+            "Jeff Green": 1100,
+            "Josh Hart": 1200
+          }
+        }
+      ],
+      "draftkings": [
+        {
+          "last_update": 1738604481,
+          "players": {
+            "Mikal Bridges": 750,
+            "Aaron Holiday": 950,
+            "Josh Hart": 1000,
+            "Jalen Green": 650,
+            "Precious Achiuwa": 1100,
+            "Jalen Brunson": 425,
+            "Alperen Sengun": 400,
+            "Dillon Brooks": 850,
+            "Amen Thompson": 750,
+            "Karl-Anthony Towns": 550
+          }
+        }
+      ],
+      "bovada": [
+        {
+          "last_update": 1738604496,
+          "players": {
+            "Jalen Brunson": 400,
+            "Alperen Sengun": 550,
+            "Jalen Green": 650,
+            "Karl-Anthony Towns": 700,
+            "Amen Thompson": 650,
+            "Mikal Bridges": 950,
+            "Dillon Brooks": 1000,
+            "Precious Achiuwa": 1100,
+            "Jeff Green": 1100,
+            "Josh Hart": 1300
+          }
+        }
+      ],
+      "betmgm": [
+        {
+          "last_update": 1738604462,
+          "players": {
+            "Jalen Brunson": 500,
+            "Karl-Anthony Towns": 525,
+            "Jalen Green": 600,
+            "Alperen Sengun": 625,
+            "Josh Hart": 725,
+            "Amen Thompson": 800,
+            "Mikal Bridges": 800,
+            "OG Anunoby": 875,
+            "Dillon Brooks": 900,
+            "Aaron Holiday": 1400
+          }
+        }
+      ]
+    }
+  },
+  "8d21ed1b9b834b66d75fdcf7b2cf1ae7": {
+    "time": 1738631400,
+    "home_team": "Memphis Grizzlies",
+    "away_team": "San Antonio Spurs",
+    "odds": {
+      "draftkings": [
+        {
+          "last_update": 1738604447,
+          "players": {
+            "Desmond Bane": 475,
+            "Jaren Jackson Jr": 600,
+            "Harrison Barnes": 850,
+            "Ja Morant": 600,
+            "Chris Paul": 1100,
+            "Zach Edey": 1000,
+            "Stephon Castle": 850,
+            "Devin Vassell": 950,
+            "Jaylen Wells": 1100,
+            "Victor Wembanyama": 475
+          }
+        }
+      ],
+      "fanduel": [
+        {
+          "last_update": 1738604489,
+          "players": {
+            "Victor Wembanyama": 460,
+            "Jaren Jackson Jr": 500,
+            "Desmond Bane": 600,
+            "Ja Morant": 650,
+            "Devin Vassell": 750,
+            "Stephon Castle": 1000,
+            "Harrison Barnes": 1100,
+            "Zach Edey": 1100,
+            "Jaylen Wells": 1200,
+            "Chris Paul": 1200
+          }
+        }
+      ],
+      "betmgm": [
+        {
+          "last_update": 1738604387,
+          "players": {
+            "Victor Wembanyama": 550,
+            "Jaren Jackson Jr": 575,
+            "Devin Vassell": 600,
+            "Desmond Bane": 625,
+            "Stephon Castle": 650,
+            "Ja Morant": 650,
+            "Zach Edey": 850,
+            "Harrison Barnes": 875,
+            "Jaylen Wells": 1000,
+            "Chris Paul": 1550
+          }
+        }
+      ],
+      "bovada": [
+        {
+          "last_update": 1738604465,
+          "players": {
+            "Victor Wembanyama": 425,
+            "Jaren Jackson Jr": 450,
+            "Desmond Bane": 500,
+            "Devin Vassell": 650,
+            "Luke Kennard": 800,
+            "Harrison Barnes": 900,
+            "Stephon Castle": 900,
+            "Zach Edey": 900,
+            "Chris Paul": 1000,
+            "Jaylen Wells": 1200
+          }
+        }
+      ]
+    }
+  },
+  "a378aa2359a0bde3d131d57282f5e312": {
+    "time": 1738631400,
+    "home_team": "Oklahoma City Thunder",
+    "away_team": "Milwaukee Bucks",
+    "odds": {
+      "draftkings": [
+        {
+          "last_update": 1738604475,
+          "players": {
+            "Brook Lopez": 950,
+            "Isaiah Hartenstein": 950,
+            "Jalen Williams": 800,
+            "Cason Wallace": 1400,
+            "Damian Lillard": 550,
+            "Andre Jackson Jr": 1800,
+            "Taurean Prince": 1200,
+            "Luguentz Dort": 1400,
+            "Giannis Antetokounmpo": 310,
+            "Shai Gilgeous-Alexander": 380
+          }
+        }
+      ],
+      "fanduel": [
+        {
+          "last_update": 1738604435,
+          "players": {
+            "Shai Gilgeous-Alexander": 450,
+            "Giannis Antetokounmpo": 460,
+            "Jalen Williams": 700,
+            "Damian Lillard": 750,
+            "Brook Lopez": 750,
+            "Cason Wallace": 900,
+            "Isaiah Hartenstein": 900,
+            "Taurean Prince": 1000,
+            "Luguentz Dort": 1100,
+            "Andre Jackson Jr": 1600
+          }
+        }
+      ],
+      "betmgm": [
+        {
+          "last_update": 1738604460,
+          "players": {
+            "Giannis Antetokounmpo": 425,
+            "Shai Gilgeous-Alexander": 500,
+            "Jalen Williams": 575,
+            "Damian Lillard": 650,
+            "Brook Lopez": 675,
+            "Isaiah Hartenstein": 775,
+            "Luguentz Dort": 1000,
+            "Cason Wallace": 1000,
+            "Taurean Prince": 1100,
+            "Andre Jackson Jr": 1350
+          }
+        }
+      ],
+      "bovada": [
+        {
+          "last_update": 1738604474,
+          "players": {
+            "Shai Gilgeous-Alexander": 400,
+            "Giannis Antetokounmpo": 500,
+            "Jalen Williams": 650,
+            "Brook Lopez": 750,
+            "Damian Lillard": 700,
+            "Cason Wallace": 900,
+            "Isaiah Hartenstein": 900,
+            "Luguentz Dort": 1000,
+            "Taurean Prince": 1100,
+            "Andre Jackson Jr": 1500
+          }
+        }
+      ]
+    }
+  },
+  "d98b95bc5825930f104e2037886fc40d": {
+    "time": 1738631400,
+    "home_team": "Minnesota Timberwolves",
+    "away_team": "Sacramento Kings",
+    "odds": {
+      "draftkings": [
+        {
+          "last_update": 1738604465,
+          "players": {
+            "Anthony Edwards": 340,
+            "Malik Monk": 700,
+            "Domantas Sabonis": 600,
+            "Mike Conley": 750,
+            "Jaden McDaniels": 550,
+            "Rudy Gobert": 600,
+            "Keegan Murray": 1200,
+            "Naz Reid": 650,
+            "Keon Ellis": 1600,
+            "DeMar DeRozan": 700
+          }
+        }
+      ],
+      "fanduel": [
+        {
+          "last_update": 1738604490,
+          "players": {
+            "Anthony Edwards": 360,
+            "Rudy Gobert": 550,
+            "Jaden McDaniels": 600,
+            "Malik Monk": 650,
+            "Mike Conley": 750,
+            "Domantas Sabonis": 900,
+            "DeMar DeRozan": 1100,
+            "Keon Ellis": 1100,
+            "Luka Garza": 1300,
+            "Keegan Murray": 1500
+          }
+        }
+      ],
+      "betmgm": [
+        {
+          "last_update": 1738604477,
+          "players": {
+            "Anthony Edwards": 475,
+            "Naz Reid": 575,
+            "Rudy Gobert": 600,
+            "Malik Monk": 650,
+            "DeMar DeRozan": 700,
+            "Jaden McDaniels": 700,
+            "Domantas Sabonis": 725,
+            "Mike Conley": 900,
+            "Keegan Murray": 1050,
+            "Keon Ellis": 1450
+          }
+        }
+      ]
+    }
+  },
+  "1717f0bce8dbf49be0d3e77bc99bc665": {
+    "time": 1738635000,
+    "home_team": "Denver Nuggets",
+    "away_team": "New Orleans Pelicans",
+    "odds": {
+      "draftkings": [
+        {
+          "last_update": 1738604476,
+          "players": {
+            "C.J. McCollum": 900,
+            "Michael Porter Jr": 600,
+            "Yves Missi": 1100,
+            "Zion Williamson": 550,
+            "Christian Braun": 1000,
+            "Aaron Gordon": 800,
+            "Jose Alvarado": 1100,
+            "Nikola Jokic": 380,
+            "Trey Murphy III": 1000,
+            "Jamal Murray": 550
+          }
+        }
+      ],
+      "bovada": [
+        {
+          "last_update": 1738604454,
+          "players": {
+            "Nikola Jokic": 350,
+            "Jamal Murray": 500,
+            "Michael Porter Jr": 600,
+            "Zion Williamson": 650,
+            "Aaron Gordon": 700,
+            "C.J. McCollum": 800,
+            "Christian Braun": 1000,
+            "Trey Murphy III": 1100,
+            "Yves Missi": 1200,
+            "Jose Alvarado": 1200
+          }
+        }
+      ],
+      "fanduel": [
+        {
+          "last_update": 1738604465,
+          "players": {
+            "Nikola Jokic": 380,
+            "Jamal Murray": 550,
+            "Michael Porter Jr": 650,
+            "Aaron Gordon": 800,
+            "Zion Williamson": 700,
+            "C.J. McCollum": 900,
+            "Christian Braun": 1000,
+            "Trey Murphy III": 1200,
+            "Yves Missi": 1200,
+            "Jose Alvarado": 1200
+          }
+        }
+      ],
+      "betmgm": [
+        {
+          "last_update": 1738604484,
+          "players": {
+            "Nikola Jokic": 360,
+            "Jamal Murray": 550,
+            "Michael Porter Jr": 575,
+            "Aaron Gordon": 700,
+            "Christian Braun": 750,
+            "Zion Williamson": 775,
+            "C.J. McCollum": 850,
+            "Trey Murphy III": 875,
+            "Jose Alvarado": 1250,
+            "Yves Missi": 1600
+          }
+        }
+      ]
+    }
+  },
+  "7806dd23a149f5b912030948fb2a39f3": {
+    "time": 1738635000,
+    "home_team": "Utah Jazz",
+    "away_team": "Indiana Pacers",
+    "odds": {
+      "draftkings": [
+        {
+          "last_update": 1738604490,
+          "players": {
+            "Andrew Nembhard": 650,
+            "Walker Kessler": 650,
+            "Isaiah Collier": 1500,
+            "John Collins": 500,
+            "Collin Sexton": 700,
+            "Bennedict Mathurin": 800,
+            "Lauri Markkanen": 550,
+            "Pascal Siakam": 600,
+            "Tyrese Haliburton": 950,
+            "Myles Turner": 750
+          }
+        }
+      ],
+      "betmgm": [
+        {
+          "last_update": 1738604444,
+          "players": {
+            "John Collins": 475,
+            "Lauri Markkanen": 550,
+            "Collin Sexton": 600,
+            "Pascal Siakam": 700,
+            "Myles Turner": 750,
+            "Walker Kessler": 800,
+            "Bennedict Mathurin": 900,
+            "Andrew Nembhard": 900,
+            "Tyrese Haliburton": 950,
+            "Isaiah Collier": 1000
+          }
+        }
+      ],
+      "fanduel": [
+        {
+          "last_update": 1738604462,
+          "players": {
+            "Collin Sexton": 550,
+            "Lauri Markkanen": 550,
+            "John Collins": 600,
+            "Pascal Siakam": 700,
+            "Walker Kessler": 700,
+            "Myles Turner": 750,
+            "Andrew Nembhard": 850,
+            "Bennedict Mathurin": 1000,
+            "Isaiah Collier": 1100,
+            "Tyrese Haliburton": 1200
+          }
+        }
+      ],
+      "bovada": [
+        {
+          "last_update": 1738604449,
+          "players": {
+            "Lauri Markkanen": 500,
+            "Collin Sexton": 550,
+            "Walker Kessler": 700,
+            "Pascal Siakam": 700,
+            "Myles Turner": 750,
+            "John Collins": 800,
+            "Andrew Nembhard": 800,
+            "Bennedict Mathurin": 1100,
+            "Isaiah Collier": 1100,
+            "Tyrese Haliburton": 1200
+          }
+        }
+      ]
+    }
+  },
+  "c4ae24f5802ac12083a858c24cee4cdd": {
+    "time": 1738638600,
+    "home_team": "Golden State Warriors",
+    "away_team": "Orlando Magic",
+    "odds": {
+      "draftkings": [
+        {
+          "last_update": 1738604470,
+          "players": {
+            "Andrew Wiggins": 500,
+            "Kentavious Caldwell-Pope": 900,
+            "Quinten Post": 850,
+            "Paolo Banchero": 500,
+            "Jalen Suggs": 850,
+            "Stephen Curry": 500,
+            "Franz Wagner": 475,
+            "Buddy Hield": 900,
+            "Goga Bitadze": 1200,
+            "Draymond Green": 1200
+          }
+        }
+      ],
+      "betmgm": [
+        {
+          "last_update": 1738604481,
+          "players": {
+            "Franz Wagner": 525,
+            "Andrew Wiggins": 575,
+            "Stephen Curry": 625,
+            "Buddy Hield": 650,
+            "Paolo Banchero": 650,
+            "Draymond Green": 800,
+            "Jalen Suggs": 850,
+            "Goga Bitadze": 1150,
+            "Kentavious Caldwell-Pope": 1150
+          }
+        }
+      ],
+      "fanduel": [
+        {
+          "last_update": 1738604477,
+          "players": {
+            "Paolo Banchero": 440,
+            "Andrew Wiggins": 500,
+            "Franz Wagner": 550,
+            "Stephen Curry": 600,
+            "Kentavious Caldwell-Pope": 900,
+            "Buddy Hield": 950,
+            "Jalen Suggs": 1000,
+            "Dennis Schroder": 1100,
+            "Goga Bitadze": 1300,
+            "Draymond Green": 1300
+          }
+        }
+      ],
+      "bovada": [
+        {
+          "last_update": 1738604461,
+          "players": {
+            "Paolo Banchero": 450,
+            "Franz Wagner": 500,
+            "Stephen Curry": 600,
+            "Andrew Wiggins": 700,
+            "Kentavious Caldwell-Pope": 800,
+            "Buddy Hield": 850,
+            "Dennis Schroder": 900,
+            "Jalen Suggs": 1000,
+            "Draymond Green": 1000,
+            "Goga Bitadze": 1400
+          }
+        }
+      ]
+    }
+  },
+  "4c6d742eba9943e71b7840775d3df198": {
+    "time": 1738638600,
+    "home_team": "Portland Trail Blazers",
+    "away_team": "Phoenix Suns",
+    "odds": {
+      "draftkings": [
+        {
+          "last_update": 1738604481,
+          "players": {
+            "Nick Richards": 1000,
+            "Devin Booker": 475,
+            "Deni Avdija": 700,
+            "Jerami Grant": 700,
+            "Tyus Jones": 1500,
+            "Anfernee Simons": 700,
+            "Ryan Dunn": 1000,
+            "Toumani Camara": 1000,
+            "Kevin Durant": 500,
+            "Deandre Ayton": 500
+          }
+        }
+      ],
+      "betmgm": [
+        {
+          "last_update": 1738604472,
+          "players": {
+            "Deandre Ayton": 500,
+            "Kevin Durant": 550,
+            "Anfernee Simons": 600,
+            "Devin Booker": 600,
+            "Deni Avdija": 700,
+            "Jerami Grant": 750,
+            "Ryan Dunn": 950,
+            "Nick Richards": 1000,
+            "Toumani Camara": 1050,
+            "Tyus Jones": 1100
+          }
+        }
+      ],
+      "bovada": [
+        {
+          "last_update": 1738604411,
+          "players": {
+            "Deandre Ayton": 475,
+            "Kevin Durant": 500,
+            "Devin Booker": 550,
+            "Jerami Grant": 650,
+            "Anfernee Simons": 700,
+            "Deni Avdija": 700,
+            "Toumani Camara": 750,
+            "Nick Richards": 1000,
+            "Ryan Dunn": 1400,
+            "Tyus Jones": 1600
+          }
+        }
+      ],
+      "fanduel": [
+        {
+          "last_update": 1738604494,
+          "players": {
+            "Deandre Ayton": 490,
+            "Kevin Durant": 550,
+            "Devin Booker": 550,
+            "Jerami Grant": 650,
+            "Deni Avdija": 700,
+            "Anfernee Simons": 750,
+            "Toumani Camara": 1100,
+            "Nick Richards": 1100,
+            "Ryan Dunn": 1100,
+            "Tyus Jones": 1800
+          }
+        }
+      ]
+    }
+  }
+}
