@@ -1,12 +1,12 @@
-import json
+import json, time
 from modal import App, Image, Volume, Period, web_endpoint
 from api_utils import get_events, get_odds, get_date, get_timestamp
 
-volume = Volume.from_name("odds-data")
+volume = Volume.from_name("odds-data", create_if_missing=True)
 image = Image.debian_slim().pip_install("requests")
 app = App("first-basket", image=image)
 
-@app.function(volumes={"/data": volume}, schedule=Period(minutes=30))
+@app.function(volumes={"/data": volume}, schedule=Period(minutes=120))
 def first_basket_cron():
     events = get_events()
 
@@ -27,25 +27,24 @@ def first_basket_cron():
 
         if event_id not in data:
             data[event_id] = {
-                "time": timestamp,
+                "commence_time": timestamp,
                 "home_team": home_team,
                 "away_team": away_team,
-                "odds": {}
+                "first_basket": []
             }
 
+        book_data = {
+            "timestamp": int(time.time()),
+            "odds": {}
+        }
         for bookmaker in odds["bookmakers"]:
             book = bookmaker["key"]
-            if book not in data[event_id]["odds"]:
-                data[event_id]["odds"][book] = []
-            
             market = bookmaker["markets"][0]
-            last_update = get_timestamp(market["last_update"])
-            players = {outcome["description"]: outcome["price"] for outcome in market["outcomes"]}
+            odds = {outcome["description"]: outcome["price"] for outcome in market["outcomes"]}
 
-            data[event_id]["odds"][book].append({
-                "last_update": last_update,
-                "players": players
-            })
+            book_data["odds"][book] = odds
+
+        data[event_id]["first_basket"].append(book_data)
 
         with open(f"/data/first_basket/{date}.json", "w") as f:
             json.dump(data, f)
