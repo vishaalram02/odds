@@ -18,30 +18,36 @@
 	ChartJS.register(LineElement, PointElement, LinearScale, Title, Tooltip, Legend, CategoryScale);
 
     const books = ["draftkings", "betmgm", "fanduel", "bovada"]
+    const colors = ["rgba(75,192,192,1)", "rgba(255,206,86,1)", "rgba(255,159,64,1)", "rgba(153,102,255,1)"]
 
     const data = {
-        labels: chartData.map(data => data.date),
-        datasets: books.map(book => ({
+        datasets: books.map((book, index) => ({
             label: book,
             data: chartData.map(data => {
                 return {
-                    x: data.date,
+                    x: data.date.toISOString(),
                     y: data.odds[book] ?? null
                 }
             }),
-            borderColor: 'rgba(75,192,192,1)',
+            borderColor: colors[index],
             fill: false,
             tension: 0.4
         }))
     }
 
-	
-
-	// Chart options
 	const options = {
 		responsive: true,
 		maintainAspectRatio: false,
 		scales: {
+			x: {
+				type: 'time',
+				time: {
+					displayFormats: {
+						hour: 'HH:mm'
+					},
+					unit: 'hour'
+				}
+			},
 			y: { beginAtZero: true }
 		}
 	};

@@ -3,7 +3,7 @@
     import type { GameData, PlayerChartData } from "$lib";
     import PlayerChart from "../components/PlayerChart.svelte";
 
-    const date = "2025-02-05"
+    const date = "2025-02-10"
     let gameData: GameData[] = [];
     let selectedGame: GameData | null = null;
     let selectedPlayer: string | null = null;
@@ -110,7 +110,9 @@
                 <div class="mb-6">
                     <h2 class="text-xl font-bold mb-4">Odds History for {selectedPlayer}</h2>
                     <div class="h-[400px]">
-                        <PlayerChart chartData={chartData} />
+                        {#key chartData}
+                            <PlayerChart chartData={chartData} />
+                        {/key}
                     </div>
                 </div>
             {/if}
