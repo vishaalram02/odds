@@ -3,7 +3,7 @@
     import type { GameData, PlayerChartData } from "$lib";
     import PlayerChart from "../components/PlayerChart.svelte";
 
-    const date = "2025-02-10"
+    const date = "2025-02-13"
     let gameData: GameData[] = [];
     let selectedGame: GameData | null = null;
     let selectedPlayer: string | null = null;
@@ -40,6 +40,23 @@
         return playerHistory;
     }
 
+    function handleKeydown(event: KeyboardEvent) {
+        if (!selectedGame || !Array.from(selectedGame.players).length) return;
+        
+        const players = Array.from(selectedGame.players);
+        const currentIndex = selectedPlayer ? players.indexOf(selectedPlayer) : -1;
+        
+        if (event.key === 'ArrowUp') {
+            event.preventDefault();
+            const newIndex = currentIndex <= 0 ? players.length - 1 : currentIndex - 1;
+            selectedPlayer = players[newIndex];
+        } else if (event.key === 'ArrowDown') {
+            event.preventDefault();
+            const newIndex = currentIndex === players.length - 1 ? 0 : currentIndex + 1;
+            selectedPlayer = players[newIndex];
+        }
+    }
+
     onMount(() => {
         fetch(`/api/first-basket?date=${date}`)
             .then(res => res.json())
@@ -73,6 +90,8 @@
     $: latestOdds = selectedGame ? getLatestOdds(selectedGame) : [];
 
 </script>
+
+<svelte:window on:keydown={handleKeydown}/>
 
 <div class="container mx-auto p-4">
     {#if gameData.length > 0}
