@@ -14,7 +14,10 @@ export interface GameData {
     away_team: string;
     players: Set<string>;
     first_basket: Array<FirstBasketHistory>;
+    commence_time: number;
 }
+
+export const BOOK_LIST = ["draftkings", "betmgm", "fanduel", "bovada"]
 
 export function getDateOptions(): string[] {
     const dates: string[] = [];

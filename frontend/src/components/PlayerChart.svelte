@@ -8,6 +8,8 @@
 		Tooltip,
 		Legend,
 		CategoryScale,
+        type ChartOptions,
+        type ChartData
 	} from 'chart.js';
     import type { PlayerChartData } from '$lib';
     import Line from "./Line.svelte"
@@ -45,9 +47,9 @@
             // Add strikethrough for MGM when toggle is on
             borderDash: modifyMGM && book === 'betmgm' ? [5, 5] : []
         }))
-    } as any
+    } as unknown as ChartData<'line', number[], string>
 
-	const options = {
+	const options: ChartOptions<'line'> = {
 		responsive: true,
 		maintainAspectRatio: false,
 		scales: {
@@ -62,7 +64,7 @@
 			},
 			y: { beginAtZero: true }
 		}
-	} as any;
+	};
 </script>
 
 <div class="toggle-container">

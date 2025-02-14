@@ -1,4 +1,4 @@
-const computeBets = (numPlayers: number, bookOdds: Array<number>, trueOdds: Array<number>, dividend: number) => {
+export const computeBets = (numPlayers: number, trueOdds: Array<number>, bookOdds: Array<number>, dividend: number) => {
     const revenueRates = Array(numPlayers).fill(0).map((_, i) => [dividend * trueOdds[i] / bookOdds[i], i]);
     revenueRates.sort((a, b) => b[0] - a[0]);
 
@@ -26,7 +26,7 @@ const computeBets = (numPlayers: number, bookOdds: Array<number>, trueOdds: Arra
         const A = trueOdds.filter((_, i) => !bets[i]).reduce((a, b) => a + b, 0);
         const B = bookOdds.filter((_, i) => bets[i]).reduce((a, b) => a + b, 0);
 
-        bets[i] = trueOdds[i] - bookOdds[i] * A / (dividend - B);
+        bets[i] = bookOdds[i] == 0 ? 0 : trueOdds[i] - bookOdds[i] * A / (dividend - B);
     }
 
     return bets;

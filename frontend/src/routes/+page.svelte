@@ -3,6 +3,7 @@
     import type { GameData, PlayerChartData } from "$lib";
     import { getDateOptions } from "$lib";
     import PlayerChart from "../components/PlayerChart.svelte";
+    import BetTable from "../components/BetTable.svelte";
 
     const dateOptions = getDateOptions();
     const today = dateOptions[0];
@@ -17,20 +18,6 @@
     // Helper to get current game
     $: currentGame = gameData.find(game => game.id === selectedGameId) || null;
 
-    // Function to get the most recent odds for each player from each sportsbook
-    function getLatestOdds(game: GameData): Array<{player: string, odds: Record<string, number>}> {
-        const latestHistory = game.first_basket[game.first_basket.length - 1];
-
-        const latestOdds: Array<{player: string, odds: Record<string, number>}> = [];
-        for(const player of game.players) {
-            const playerOdds: Record<string, number> = {};
-            for(const [book, odds] of Object.entries(latestHistory.odds)) {
-                playerOdds[book] = odds[player];
-            }
-            latestOdds.push({player, odds: playerOdds});
-        }
-        return latestOdds;
-    }
 
     // Function to get historical odds data for a specific player
     function getPlayerHistory(game: GameData, player: string) {
@@ -107,6 +94,7 @@
                             away_team: game.away_team,
                             players: new Set(),
                             first_basket: game.first_basket,
+                            commence_time: game.commence_time,
                         }
                         for (const history of currentGame.first_basket) {
                             for (const odds of Object.values(history.odds)) {
@@ -125,7 +113,6 @@
     }
 
     $: chartData = currentGame && selectedPlayer ? getPlayerHistory(currentGame, selectedPlayer) : [];
-    $: latestOdds = currentGame ? getLatestOdds(currentGame) : [];
 
     $: if(selectedGameId !== previousGameId) {
         previousGameId = selectedGameId;
@@ -198,28 +185,9 @@
         </div>
     {/if}
 
-    {#if today === date && gameData.length > 0}
-        <div class="mb-6">
-            <h2 class="text-xl font-bold mb-4">Latest Odds</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {#each latestOdds as {player, odds}}
-                    <div class="border rounded p-4">
-                        <h3 class="font-bold mb-2">{player}</h3>
-                        <div class="space-y-1">
-                            {#each Object.entries(odds) as [book, odd]}
-                                <div class="flex justify-between">
-                                    <span>{book}:</span>
-                                    <span>{odd}</span>
-                                </div>
-                            {/each}
-                        </div>
-                    </div>
-                {/each}
-            </div>
-        </div>
-    {:else if gameData.length === 0}
-        <div class="mb-6">
-            <h2 class="text-xl font-bold mb-4">No games found for {date}</h2>
-        </div>
+    {#if currentGame}
+        {#key currentGame}
+            <BetTable game={currentGame} />
+        {/key}
     {/if}
 </div>
