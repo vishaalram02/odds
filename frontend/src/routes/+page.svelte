@@ -3,10 +3,32 @@
     import type { GameData, PlayerChartData } from "$lib";
     import PlayerChart from "../components/PlayerChart.svelte";
 
-    const date = "2025-02-13"
+    // Function to generate date options (7 days including today)
+    function getDateOptions(): string[] {
+        const dates: string[] = [];
+        const today = new Date();
+        // Convert to EST
+        today.setHours(today.getHours() - 4); // EST is UTC-4
+
+        for (let i = 0; i < 7; i++) {
+            const date = new Date(today);
+            date.setDate(date.getDate() - i);
+            const formattedDate = date.toISOString().split('T')[0];
+            dates.push(formattedDate);
+        }
+        return dates;
+    }
+
+    const dateOptions = getDateOptions();
+    const today = dateOptions[0];
+    let date: string | undefined = undefined;
     let gameData: GameData[] = [];
-    let selectedGame: GameData | null = null;
+    let selectedGameId: string | null = null;
+    let previousGameId: string | null = null;
     let selectedPlayer: string | null = null;
+
+    // Helper to get current game
+    $: currentGame = gameData.find(game => game.id === selectedGameId) || null;
 
     // Function to get the most recent odds for each player from each sportsbook
     function getLatestOdds(game: GameData): Array<{player: string, odds: Record<string, number>}> {
@@ -41,9 +63,28 @@
     }
 
     function handleKeydown(event: KeyboardEvent) {
-        if (!selectedGame || !Array.from(selectedGame.players).length) return;
+        // Handle game switching with left/right arrows
+        if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+            event.preventDefault();
+            if (gameData.length === 0) return;
+            
+            const currentIndex = gameData.findIndex(game => game.id === selectedGameId);
+            if (currentIndex === -1) return;
+            
+            if (event.key === 'ArrowLeft') {
+                const newIndex = currentIndex <= 0 ? gameData.length - 1 : currentIndex - 1;
+                selectedGameId = gameData[newIndex].id;
+            } else {
+                const newIndex = currentIndex >= gameData.length - 1 ? 0 : currentIndex + 1;
+                selectedGameId = gameData[newIndex].id;
+            }
+            return;
+        }
+
+        // Handle player switching with up/down arrows
+        if (!currentGame || !Array.from(currentGame.players).length) return;
         
-        const players = Array.from(selectedGame.players);
+        const players = Array.from(currentGame.players);
         const currentIndex = selectedPlayer ? players.indexOf(selectedPlayer) : -1;
         
         if (event.key === 'ArrowUp') {
@@ -58,104 +99,135 @@
     }
 
     onMount(() => {
+        fetchData();
+    });
+
+    $: if(date) {
+        fetchData();
+    }
+
+    const fetchData = () => {
         fetch(`/api/first-basket?date=${date}`)
             .then(res => res.json())
             .then(data => {
+                gameData = [];
                 for (const entry of Object.entries(data)) {
                     const [id, game]: [string, any] = entry;
                     const currentGame: GameData = {
-                        id: id,
-                        home_team: game.home_team,
-                        away_team: game.away_team,
-                        players: new Set(),
-                        first_basket: game.first_basket,
-                    }
-                    for (const history of currentGame.first_basket) {
-                        for (const odds of Object.values(history.odds)) {
-                            for (const player of Object.keys(odds)) {
-                                currentGame.players.add(player);
+                            id: id,
+                            home_team: game.home_team,
+                            away_team: game.away_team,
+                            players: new Set(),
+                            first_basket: game.first_basket,
+                        }
+                        for (const history of currentGame.first_basket) {
+                            for (const odds of Object.values(history.odds)) {
+                                for (const player of Object.keys(odds)) {
+                                    currentGame.players.add(player);
+                                }
                             }
                         }
+                        gameData.push(currentGame);
                     }
-                    gameData.push(currentGame);
-                }
-                if (gameData.length > 0) {
-                    selectedGame = gameData[0];
-                }
-                gameData = [...gameData];
+                    if (gameData.length > 0) {
+                        selectedGameId = gameData[0].id;
+                    }
+                    gameData = [...gameData];
             });
-    });
+    }
 
-    $: chartData = selectedGame && selectedPlayer ? getPlayerHistory(selectedGame, selectedPlayer) : [];
-    $: latestOdds = selectedGame ? getLatestOdds(selectedGame) : [];
+    $: chartData = currentGame && selectedPlayer ? getPlayerHistory(currentGame, selectedPlayer) : [];
+    $: latestOdds = currentGame ? getLatestOdds(currentGame) : [];
+
+    $: if(selectedGameId !== previousGameId) {
+        previousGameId = selectedGameId;
+        selectedPlayer = null;
+    }
 
 </script>
 
 <svelte:window on:keydown={handleKeydown}/>
 
 <div class="container mx-auto p-4">
-    {#if gameData.length > 0}
-        <div class="mb-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div>
             <!-- svelte-ignore a11y_label_has_associated_control -->
-            <label class="block text-sm font-medium mb-2">Select Game:</label>
+            <label class="block text-sm font-medium mb-2">Select Date:</label>
             <select 
                 class="w-full p-2 border rounded"
-                bind:value={selectedGame}
+                bind:value={date}
             >
-                {#each gameData as game}
-                    <option value={game}>
-                        {game.away_team} @ {game.home_team}
+                {#each dateOptions as dateOption}
+                    <option value={dateOption}>
+                        {new Date(dateOption).toLocaleDateString()}
                     </option>
                 {/each}
             </select>
         </div>
 
-        {#if selectedGame}
-            <div class="mb-6">
+        {#if gameData.length > 0}
+            <div>
                 <!-- svelte-ignore a11y_label_has_associated_control -->
-                <label class="block text-sm font-medium mb-2">Select Player:</label>
+                <label class="block text-sm font-medium mb-2">Select Game:</label>
                 <select 
                     class="w-full p-2 border rounded"
-                    bind:value={selectedPlayer}
+                    bind:value={selectedGameId}
                 >
-                    <option value={null}>Select a player...</option>
-                    {#each Array.from(selectedGame.players) as player}
-                        <option value={player}>{player}</option>
+                    {#each gameData as game}
+                        <option value={game.id}>
+                            {game.away_team} @ {game.home_team}
+                        </option>
                     {/each}
                 </select>
             </div>
 
-            {#if selectedPlayer && chartData.length > 0}
-                <div class="mb-6">
-                    <h2 class="text-xl font-bold mb-4">Odds History for {selectedPlayer}</h2>
-                    <div class="h-[400px]">
-                        {#key chartData}
-                            <PlayerChart chartData={chartData} />
-                        {/key}
-                    </div>
+            {#if currentGame}
+                <div>
+                    <!-- svelte-ignore a11y_label_has_associated_control -->
+                    <label class="block text-sm font-medium mb-2">Select Player:</label>
+                    <select 
+                        class="w-full p-2 border rounded"
+                        bind:value={selectedPlayer}
+                    >
+                        <option value={null}>Select a player...</option>
+                        {#each Array.from(currentGame.players) as player}
+                            <option value={player}>{player}</option>
+                        {/each}
+                    </select>
                 </div>
             {/if}
-
-            <div class="mb-6">
-                <h2 class="text-xl font-bold mb-4">Latest Odds</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {#each latestOdds as {player, odds}}
-                        <div class="border rounded p-4">
-                            <h3 class="font-bold mb-2">{player}</h3>
-                            <div class="space-y-1">
-                                {#each Object.entries(odds) as [book, odd]}
-                                    <div class="flex justify-between">
-                                        <span>{book}:</span>
-                                        <span>{odd}</span>
-                                    </div>
-                                {/each}
-                            </div>
-                        </div>
-                    {/each}
-                </div>
-            </div>
         {/if}
-    {:else}
-        <p>Loading...</p>
+    </div>
+
+    {#if selectedPlayer && chartData.length > 0}
+        <div class="mb-6">
+            <h2 class="text-xl font-bold mb-4">Odds History for {selectedPlayer}</h2>
+            <div class="h-[400px]">
+                {#key chartData}
+                    <PlayerChart chartData={chartData} />
+                {/key}
+            </div>
+        </div>
+    {/if}
+
+    {#if today === date}
+        <div class="mb-6">
+            <h2 class="text-xl font-bold mb-4">Latest Odds</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {#each latestOdds as {player, odds}}
+                    <div class="border rounded p-4">
+                        <h3 class="font-bold mb-2">{player}</h3>
+                        <div class="space-y-1">
+                            {#each Object.entries(odds) as [book, odd]}
+                                <div class="flex justify-between">
+                                    <span>{book}:</span>
+                                    <span>{odd}</span>
+                                </div>
+                            {/each}
+                        </div>
+                    </div>
+                {/each}
+            </div>
+        </div>
     {/if}
 </div>
