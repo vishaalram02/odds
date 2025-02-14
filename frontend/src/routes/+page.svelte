@@ -6,9 +6,8 @@
     // Function to generate date options (7 days including today)
     function getDateOptions(): string[] {
         const dates: string[] = [];
-        const today = new Date();
-        // Convert to EST
-        today.setHours(today.getHours() - 4); // EST is UTC-4
+        // Create date in EST/EDT
+        const today = new Date(new Date().toLocaleString("en-US", { timeZone: "America/New_York" }));
 
         for (let i = 0; i < 7; i++) {
             const date = new Date(today);
@@ -20,6 +19,7 @@
     }
 
     const dateOptions = getDateOptions();
+    console.log(dateOptions)
     const today = dateOptions[0];
     let date: string | undefined = undefined;
     let gameData: GameData[] = [];
@@ -159,7 +159,7 @@
             >
                 {#each dateOptions as dateOption}
                     <option value={dateOption}>
-                        {new Date(dateOption).toLocaleDateString()}
+                        {dateOption}
                     </option>
                 {/each}
             </select>
@@ -210,7 +210,7 @@
         </div>
     {/if}
 
-    {#if today === date}
+    {#if today === date && gameData.length > 0}
         <div class="mb-6">
             <h2 class="text-xl font-bold mb-4">Latest Odds</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -228,6 +228,10 @@
                     </div>
                 {/each}
             </div>
+        </div>
+    {:else if gameData.length === 0}
+        <div class="mb-6">
+            <h2 class="text-xl font-bold mb-4">No games found for {date}</h2>
         </div>
     {/if}
 </div>
