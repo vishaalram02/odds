@@ -6,9 +6,10 @@
 
     const dateOptions = getDateOptions();
     const today = dateOptions[0];
+    let initrender = true;
     let gameData: GameData[] = [];
 
-    let date: string | null = null;
+    let date: string = today;
     let selectedGameId: string | null = null;
     let previousGameId: string | null = null;
     let selectedPlayer: string | null = null;
@@ -86,9 +87,10 @@
 
     onMount(() => {
         fetchData();
+        initrender = false;
     });
 
-    $: if(date) {
+    $: if(date && !initrender) {
         fetchData();
     }
 
