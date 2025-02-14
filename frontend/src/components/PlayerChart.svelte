@@ -31,7 +31,7 @@
                 let odds = data.odds[book];
                 // If toggle is on and it's MGM, add 2 to the odds
                 if (modifyMGM && book === 'betmgm' && odds) {
-					const newImpliedProbability = 1 + odds/200 - Math.sqrt(odds / 25 + odds ** 2 / 10000) / 2
+					const newImpliedProbability = 1 + odds / 200 - Math.sqrt(odds ** 2 + 400 * odds) / 200
                     odds = 100 / newImpliedProbability - 100;
                 }
                 return {
