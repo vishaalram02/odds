@@ -1,28 +1,14 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import type { GameData, PlayerChartData } from "$lib";
+    import { getDateOptions } from "$lib";
     import PlayerChart from "../components/PlayerChart.svelte";
 
-    // Function to generate date options (7 days including today)
-    function getDateOptions(): string[] {
-        const dates: string[] = [];
-        // Create date in EST/EDT
-        const today = new Date(new Date().toLocaleString("en-US", { timeZone: "America/New_York" }));
-
-        for (let i = 0; i < 7; i++) {
-            const date = new Date(today);
-            date.setDate(date.getDate() - i);
-            const formattedDate = date.toISOString().split('T')[0];
-            dates.push(formattedDate);
-        }
-        return dates;
-    }
-
     const dateOptions = getDateOptions();
-    console.log(dateOptions)
     const today = dateOptions[0];
-    let date: string | undefined = undefined;
     let gameData: GameData[] = [];
+
+    let date: string | null = null;
     let selectedGameId: string | null = null;
     let previousGameId: string | null = null;
     let selectedPlayer: string | null = null;
