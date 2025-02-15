@@ -10,20 +10,22 @@
     let fairBook = "draftkings";
     let targetBook = "betmgm";
     let bankRoll = 25000;
+    const TIME_OFFSET = 3600 * 2;
 
     let bookEdges: Record<string, number> = {};
     let impliedProbs: Record<string, Record<string, number>> = {};
     let filteredOdds: Array<{player: string, odds: Record<string, number>}> = [];
     let latestOdds: Array<{player: string, odds: Record<string, number>}> = [];
+    let betValues: Array<number> = [];
+    let scaledBets: Array<number> = [];
 
     const impliedProb = (odds: number) => {
         return 100 / (odds + 100);
     }
 
-    // Function to get the most recent odds for each player from each sportsbook
-    const getLatestOdds = (modifyMGM: boolean) => {
+    const computeTableData = (modifyMGM: boolean, fairBook: string, targetBook: string) => {
         const currentTime = Math.floor(Date.now() / 1000);
-        const cutoffTime = Math.min(currentTime, game.commence_time);
+        const cutoffTime = Math.min(currentTime, game.commence_time - TIME_OFFSET);
         
         const latestHistory = game.first_basket
             .filter(h => h.timestamp <= cutoffTime)
@@ -50,9 +52,11 @@
         filteredOdds = latestOdds.filter(player => 
             player.odds[fairBook] || player.odds[targetBook]
         ); 
+        betValues = computeBetValues(targetBook);
+        scaledBets = betValues.map(bet => Math.round(bet * bankRoll));
     }
 
-    $: getLatestOdds(modifyMGM);
+    $: computeTableData(modifyMGM, fairBook, targetBook);
 
     const getBookEdges = () => {
         const bookEdges: Record<string, number> = {};
@@ -73,16 +77,13 @@
         return impliedProbs;
     }
 
-
-    const computeBetValues = (targetBook: string, modifyMGM: boolean) => {
+    const computeBetValues = (targetBook: string) => {
         const fairOdds = filteredOdds.map(player => impliedProbs[fairBook][player.player] || 0);
         const targetOdds = filteredOdds.map(player => impliedProbs[targetBook][player.player] || 0);
 
         return computeBets(filteredOdds.length, fairOdds, targetOdds, 1 / bookEdges[targetBook]);
     }
 
-    $: betValues = computeBetValues(targetBook, modifyMGM);
-    $: scaledBets = betValues.map(bet => Math.round(bet * bankRoll));
 </script>
 
 <div class="controls">
