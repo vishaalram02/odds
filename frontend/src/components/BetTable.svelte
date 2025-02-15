@@ -23,7 +23,7 @@
         return 100 / (odds + 100);
     }
 
-    const computeTableData = (modifyMGM: boolean, fairBook: string, targetBook: string) => {
+    const computeTableData = (modifyMGM: boolean, bankRoll: number, fairBook: string, targetBook: string) => {
         const currentTime = Math.floor(Date.now() / 1000);
         const cutoffTime = Math.min(currentTime, game.commence_time - TIME_OFFSET);
         
@@ -56,7 +56,7 @@
         scaledBets = betValues.map(bet => Math.round(bet * bankRoll));
     }
 
-    $: computeTableData(modifyMGM, fairBook, targetBook);
+    $: computeTableData(modifyMGM, bankRoll, fairBook, targetBook);
 
     const getBookEdges = () => {
         const bookEdges: Record<string, number> = {};
