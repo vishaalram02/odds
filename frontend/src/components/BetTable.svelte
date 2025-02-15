@@ -97,6 +97,9 @@
         />
     </label>
     <div>
+        Fair Edge: {Math.round(bookEdges[fairBook] * 100 - 100)}%
+    </div>
+    <div>
         Target Edge: {Math.round(bookEdges[targetBook] * 100 - 100)}%
     </div>
 </div>
