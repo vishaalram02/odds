@@ -5,17 +5,23 @@
     } from "$lib";
     import { computeBets } from "$lib/horse";
     export let game: GameData;
+    export let modifyMGM: boolean;
 
     let fairBook = "draftkings";
     let targetBook = "betmgm";
-    let bankRoll = 10000;
+    let bankRoll = 25000;
+
+    let bookEdges: Record<string, number> = {};
+    let impliedProbs: Record<string, Record<string, number>> = {};
+    let filteredOdds: Array<{player: string, odds: Record<string, number>}> = [];
+    let latestOdds: Array<{player: string, odds: Record<string, number>}> = [];
 
     const impliedProb = (odds: number) => {
         return 100 / (odds + 100);
     }
 
     // Function to get the most recent odds for each player from each sportsbook
-    const getLatestOdds = () => {
+    const getLatestOdds = (modifyMGM: boolean) => {
         const currentTime = Math.floor(Date.now() / 1000);
         const cutoffTime = Math.min(currentTime, game.commence_time);
         
@@ -25,17 +31,28 @@
         
         if (!latestHistory) return [];
 
-        const latestOdds: Array<{player: string, odds: Record<string, number>}> = [];
+        latestOdds = [];
         for(const player of game.players) {
             const playerOdds: Record<string, number> = {};
             for(const [book, odds] of Object.entries(latestHistory.odds)) {
-                playerOdds[book] = odds[player];
+                let adjustedOdds = odds[player];
+                if (modifyMGM && book === 'betmgm' && adjustedOdds) {
+                    const newImpliedProbability = 1 + adjustedOdds / 200 - Math.sqrt(adjustedOdds ** 2 + 400 * adjustedOdds) / 200;
+                    adjustedOdds = 100 / newImpliedProbability - 100;
+                }
+                playerOdds[book] = Math.round(adjustedOdds);
             }
             latestOdds.push({player, odds: playerOdds});
         }
 
-        return latestOdds;
+        bookEdges = getBookEdges();
+        impliedProbs = getImpliedProbs();
+        filteredOdds = latestOdds.filter(player => 
+            player.odds[fairBook] || player.odds[targetBook]
+        ); 
     }
+
+    $: getLatestOdds(modifyMGM);
 
     const getBookEdges = () => {
         const bookEdges: Record<string, number> = {};
@@ -56,22 +73,15 @@
         return impliedProbs;
     }
 
-    $: latestOdds = getLatestOdds();
-    $: bookEdges = getBookEdges();
-    $: impliedProbs = getImpliedProbs();
-    $: filteredOdds = latestOdds.filter(player => 
-        player.odds[fairBook] || player.odds[targetBook]
-    );
 
-    const computeBetValues = () => {
+    const computeBetValues = (targetBook: string, modifyMGM: boolean) => {
         const fairOdds = filteredOdds.map(player => impliedProbs[fairBook][player.player] || 0);
         const targetOdds = filteredOdds.map(player => impliedProbs[targetBook][player.player] || 0);
-        console.log(fairOdds, targetOdds);
 
         return computeBets(filteredOdds.length, fairOdds, targetOdds, 1 / bookEdges[targetBook]);
     }
 
-    $: betValues = computeBetValues();
+    $: betValues = computeBetValues(targetBook, modifyMGM);
     $: scaledBets = betValues.map(bet => Math.round(bet * bankRoll));
 </script>
 

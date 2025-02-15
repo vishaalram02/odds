@@ -14,6 +14,7 @@
     let selectedGameId: string | null = null;
     let previousGameId: string | null = null;
     let selectedPlayer: string | null = null;
+    let modifyMGM = false;
 
     // Helper to get current game
     $: currentGame = gameData.find(game => game.id === selectedGameId) || null;
@@ -179,7 +180,7 @@
             <h2 class="text-xl font-bold mb-4">Odds History for {selectedPlayer}</h2>
             <div class="h-[400px]">
                 {#key chartData}
-                    <PlayerChart chartData={chartData} />
+                    <PlayerChart chartData={chartData} bind:modifyMGM />
                 {/key}
             </div>
         </div>
@@ -187,7 +188,7 @@
 
     {#if currentGame}
         {#key currentGame}
-            <BetTable game={currentGame} />
+            <BetTable game={currentGame} {modifyMGM} />
         {/key}
     {/if}
 </div>
