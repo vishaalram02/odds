@@ -20,7 +20,8 @@
     let scaledBets: Array<number> = [];
 
     const impliedProb = (odds: number) => {
-        return 100 / (odds + 100);
+        if (odds >= 0) return 100 / (odds + 100);
+        else return odds / (odds - 100);
     }
 
     const computeTableData = (modifyMGM: boolean, bankRoll: number, fairBook: string, targetBook: string) => {

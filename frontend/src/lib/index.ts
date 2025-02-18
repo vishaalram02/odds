@@ -24,7 +24,7 @@ export function getDateOptions(): string[] {
     // Create date in EST/EDT
     const today = new Date(new Date().toLocaleString("en-US", { timeZone: "America/New_York" }));
 
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < 10; i++) {
         const date = new Date(today);
         date.setDate(date.getDate() - i);
         const formattedDate = date.toISOString().split('T')[0];
