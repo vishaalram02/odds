@@ -17,7 +17,7 @@
     let filteredOdds: Array<{player: string, odds: Record<string, number>}> = [];
     let latestOdds: Array<{player: string, odds: Record<string, number>}> = [];
     let betValues: Array<number> = [];
-    let scaledBets: Array<number> = [];
+    let scaledBets: Record<string, number> = {};
 
     const impliedProb = (odds: number) => {
         if (odds >= 0) return 100 / (odds + 100);
@@ -54,7 +54,12 @@
             player.odds[fairBook] || player.odds[targetBook]
         ); 
         betValues = computeBetValues(targetBook);
-        scaledBets = betValues.map(bet => Math.round(bet * bankRoll));
+        scaledBets = Object.fromEntries(
+            filteredOdds.map((player, i) => [player.player, Math.round(betValues[i] * bankRoll)])
+        );
+        
+        // Sort filteredOdds by bet amount
+        filteredOdds.sort((a, b) => scaledBets[b.player] - scaledBets[a.player]);
     }
 
     $: computeTableData(modifyMGM, bankRoll, fairBook, targetBook);
@@ -132,13 +137,13 @@
         {#each filteredOdds as {player, odds}, i}
             {@const fairOdds = odds[fairBook] || 0}
             {@const targetOdds = odds[targetBook] || 0}
-            <tr>
+            <tr class={`${scaledBets[player] > 0 ? 'bg-blue-50' : ''}`}>
                 <td>{player}</td>
                 <td class="odds">{fairOdds ? (fairOdds > 0 ? '+' : '') + fairOdds : '-'}</td>
                 <td>{fairOdds > 0 ? Math.round(impliedProbs[fairBook][player] * 1000) / 10 + '%' : '-'}</td>
                 <td class="odds">{targetOdds ? (targetOdds > 0 ? '+' : '') + targetOdds : '-'}</td>
                 <td>{targetOdds > 0 ? Math.round(impliedProbs[targetBook][player] * 1000) / 10 + '%' : '-'}</td>
-                <td>${scaledBets[i]}</td>
+                <td>${scaledBets[player]}</td>
             </tr>
         {/each}
     </tbody>
