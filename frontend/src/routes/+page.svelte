@@ -172,6 +172,10 @@
                     </select>
                 </div>
             {/if}
+        {:else}
+            <div class="text-lg mt-8">
+                <p>No games found for {date}.</p>
+            </div>
         {/if}
     </div>
 
