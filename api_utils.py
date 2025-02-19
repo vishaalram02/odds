@@ -10,7 +10,7 @@ API_KEY = {
 }
 
 QUERY_PARAMS = {
-    "bookmakers": "betmgm,draftkings,fanduel,bovada",
+    "bookmakers": "betmgm,draftkings,fanduel,bovada,betrivers",
     "oddsFormat": "american",
 }
 
