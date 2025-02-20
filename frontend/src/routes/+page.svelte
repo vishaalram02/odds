@@ -15,6 +15,9 @@
     let previousGameId: string | null = null;
     let selectedPlayer: string | null = null;
     let modifyMGM = false;
+    let fairBook = "draftkings";
+    let targetBook = "betmgm";
+    let bankRoll = 25000;
 
     // Helper to get current game
     $: currentGame = gameData.find(game => game.id === selectedGameId) || null;
@@ -191,8 +194,8 @@
     {/if}
 
     {#if currentGame}
-        {#key currentGame}
-            <BetTable game={currentGame} {modifyMGM} />
+        {#key currentGame.id}
+            <BetTable game={currentGame} {modifyMGM} bind:fairBook bind:targetBook bind:bankRoll />
         {/key}
     {/if}
 </div>

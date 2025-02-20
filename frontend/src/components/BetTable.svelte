@@ -6,10 +6,10 @@
     import { computeBets } from "$lib/horse";
     export let game: GameData;
     export let modifyMGM: boolean;
+    export let fairBook: string;
+    export let targetBook: string;
+    export let bankRoll: number;
 
-    let fairBook = "draftkings";
-    let targetBook = "betmgm";
-    let bankRoll = 25000;
     const TIME_OFFSET = 3600 * 2;
 
     let bookEdges: Record<string, number> = {};

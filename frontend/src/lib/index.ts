@@ -17,7 +17,7 @@ export interface GameData {
     commence_time: number;
 }
 
-export const BOOK_LIST = ["draftkings", "betmgm", "fanduel", "bovada"]
+export const BOOK_LIST = ["draftkings", "betmgm", "fanduel", "bovada", "betrivers"]
 
 export function getDateOptions(): string[] {
     const dates: string[] = [];
