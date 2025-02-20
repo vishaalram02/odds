@@ -9,7 +9,7 @@ ODDS_PATH = "/v4/sports/basketball_nba/events/{event_id}/odds"
 NOTIFY_BOOKS = ["betmgm", "draftkings"]
 
 API_KEY = {
-    "apiKey": "800d662e2f09e9a8c5ec6730ab95796c"
+    "apiKey": "352b2e3a3b90cd38c804cca9cdfe20ee"
 }
 
 QUERY_PARAMS = {

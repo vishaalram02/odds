@@ -6,7 +6,7 @@ volume = Volume.from_name("odds-data", create_if_missing=True)
 image = Image.debian_slim().pip_install("requests")
 app = App("first-basket", image=image)
 
-@app.function(volumes={"/data": volume}, schedule=Period(minutes=120))
+@app.function(volumes={"/data": volume}, schedule=Period(minutes=10))
 def first_basket_cron():
     events = get_events()
 
