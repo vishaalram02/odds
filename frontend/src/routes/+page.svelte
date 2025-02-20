@@ -186,7 +186,7 @@
 
 	{#if currentGame}
 		{#key currentGame.id}
-			<BetTable game={currentGame} {modifyMGM} bind:fairBook bind:targetBook bind:bankRoll />
+			<BetTable game={currentGame} bind:modifyMGM bind:fairBook bind:targetBook bind:bankRoll />
 		{/key}
 	{/if}
 </div>

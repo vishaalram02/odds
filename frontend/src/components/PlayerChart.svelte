@@ -56,6 +56,7 @@
 	const options: ChartOptions<'line'> = {
 		responsive: true,
 		maintainAspectRatio: false,
+		pointRadius: 2,
 		scales: {
 			x: {
 				type: 'time',
@@ -68,7 +69,7 @@
 			},
 			y: { beginAtZero: true }
 		}
-	};
+	} as unknown as ChartOptions<'line'>;
 </script>
 
 <div class="toggle-container">
@@ -81,10 +82,6 @@
 <Line {data} {options} />
 
 <style>
-	.toggle-container {
-		margin-bottom: 1rem;
-	}
-
 	label {
 		display: flex;
 		align-items: center;

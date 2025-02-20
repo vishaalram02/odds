@@ -103,6 +103,12 @@
 		<input type="number" bind:value={bankRoll} min="0" step="100" />
 	</label>
 	<div>
+		<label>
+			MGM Promo
+			<input type="checkbox" bind:checked={modifyMGM} class="!w-4" />
+		</label>
+	</div>
+	<div>
 		Fair Edge: {Math.round(bookEdges[fairBook] * 100 - 100)}%
 	</div>
 	<div>
