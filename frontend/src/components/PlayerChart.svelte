@@ -72,24 +72,4 @@
 	} as unknown as ChartOptions<'line'>;
 </script>
 
-<div class="toggle-container">
-	<label>
-		<input type="checkbox" bind:checked={modifyMGM} />
-		MGM Promo
-	</label>
-</div>
-
 <Line {data} {options} />
-
-<style>
-	label {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		cursor: pointer;
-	}
-
-	input[type='checkbox'] {
-		cursor: pointer;
-	}
-</style>
