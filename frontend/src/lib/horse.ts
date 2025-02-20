@@ -4,12 +4,11 @@ export const computeBets = (
 	bookOdds: Array<number>,
 	dividend: number
 ) => {
-
-    const calcRevenue = (trueOdds: number, bookOdds: number) => {
-        if(trueOdds === 0) return 0;
-        if(bookOdds === 0) return 0;
-        return (dividend * trueOdds) / bookOdds;
-    }
+	const calcRevenue = (trueOdds: number, bookOdds: number) => {
+		if (trueOdds === 0) return 0;
+		if (bookOdds === 0) return 0;
+		return (dividend * trueOdds) / bookOdds;
+	};
 
 	const revenueRates = Array(numPlayers)
 		.fill(0)
@@ -17,7 +16,7 @@ export const computeBets = (
 	revenueRates.sort((a, b) => b[0] - a[0]);
 
 	const bets: Array<number> = Array(numPlayers).fill(0);
-    const horses = new Set<number>();
+	const horses = new Set<number>();
 	let reserve = 1;
 
 	for (let i = 0; i < numPlayers; i++) {
@@ -26,7 +25,7 @@ export const computeBets = (
 
 		if (revenueRate <= reserve) break;
 
-        horses.add(player);
+		horses.add(player);
 
 		const A = trueOdds.filter((_, i) => !horses.has(i)).reduce((a, b) => a + b, 0);
 		const B = bookOdds.filter((_, i) => horses.has(i)).reduce((a, b) => a + b, 0);
