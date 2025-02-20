@@ -2,8 +2,11 @@ import requests
 from datetime import datetime, timezone, timedelta
 
 API_URL = "https://api.the-odds-api.com"
+NOTIF_URL = "https://ntfy.vishy.lol/first_basket"
 EVENTS_PATH = "/v4/sports/basketball_nba/events"
 ODDS_PATH = "/v4/sports/basketball_nba/events/{event_id}/odds"
+
+NOTIFY_BOOKS = ["betmgm", "draftkings"]
 
 API_KEY = {
     "apiKey": "800d662e2f09e9a8c5ec6730ab95796c"
@@ -34,3 +37,13 @@ def get_date(timestamp: int) -> str:
     est_dt = datetime.fromtimestamp(timestamp, tz=timezone.utc).astimezone(est_tz)
     return est_dt.strftime("%Y-%m-%d")
 
+def notify_book_open(book: str, timestamp: int, home_team: str, away_team: str):
+    if book not in NOTIFY_BOOKS:
+        return
+
+    date = get_date(timestamp)
+    requests.post(
+        NOTIF_URL,
+        data=f"{home_team} vs {away_team} on {date}",
+        headers={"Title": f"First basket open on {book}"}
+    )

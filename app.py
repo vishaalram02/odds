@@ -1,6 +1,6 @@
 import json, time
 from modal import App, Image, Volume, Period, web_endpoint
-from api_utils import get_events, get_odds, get_date, get_timestamp
+from api_utils import get_events, get_odds, get_date, get_timestamp, notify_book_open
 
 volume = Volume.from_name("odds-data", create_if_missing=True)
 image = Image.debian_slim().pip_install("requests")
@@ -33,15 +33,23 @@ def first_basket_cron():
                 "first_basket": []
             }
 
+        # Get set of existing bookmakers for this event
+        existing_books = set()
+        for historical_data in data[event_id]["first_basket"]:
+            existing_books.update(historical_data["odds"].keys())
+
         book_data = {
             "timestamp": int(time.time()),
             "odds": {}
         }
         for bookmaker in odds["bookmakers"]:
             book = bookmaker["key"]
+            # Check if this is a new bookmaker
+            if book not in existing_books:
+                notify_book_open(book, timestamp, home_team, away_team)
+                
             market = bookmaker["markets"][0]
             odds = {outcome["description"]: outcome["price"] for outcome in market["outcomes"]}
-
             book_data["odds"][book] = odds
 
         data[event_id]["first_basket"].append(book_data)
