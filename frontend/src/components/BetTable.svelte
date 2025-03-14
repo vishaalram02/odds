@@ -21,6 +21,18 @@
 		else return odds / (odds - 100);
 	};
 
+	const findBestOdds = (odds: Record<string, number>) => {
+		let bestOdds = -Infinity;
+		let bestBook = '';
+		for (const [book, value] of Object.entries(odds)) {
+			if (value > bestOdds) {
+				bestOdds = value;
+				bestBook = book;
+			}
+		}
+		return bestBook;
+	};
+
 	const computeTableData = (
 		modifyMGM: boolean,
 		bankRoll: number,
@@ -48,7 +60,12 @@
 				}
 				playerOdds[book] = Math.round(adjustedOdds);
 			}
+			if (fairBook === 'argmin') {
+				const bestBook = findBestOdds(playerOdds);
+				playerOdds['argmin'] = playerOdds[bestBook];
+			}
 			latestOdds.push({ player, odds: playerOdds });
+
 		}
 
 		bookEdges = getBookEdges();
@@ -122,6 +139,7 @@
 			<th>Player</th>
 			<th colspan="1">
 				<select bind:value={fairBook}>
+					<option value="argmin">argmin</option>
 					{#each BOOK_LIST as book}
 						<option value={book}>{book}</option>
 					{/each}
